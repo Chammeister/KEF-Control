@@ -1,0 +1,37 @@
+# --- Node / frontend ---
+node_modules/
+app/node_modules/
+dist/
+app/dist/
+*.log
+npm-debug.log*
+
+# --- Rust / Tauri ---
+target/
+app/target/
+app/src-tauri/target/
+app/src-tauri/gen/
+
+# --- OS / editor cruft ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# --- Third-party reference material (KEF copyrighted: do not redistribute) ---
+*.pdf
+
+# --- Large design / working source images (kept local, not needed to build) ---
+# The icons the app actually uses live in app/src-tauri/icons/ and ARE committed.
+# These are the oversized working files; remove a line if you want to publish one.
+KEF App Icon_*.png
+UI Icon_*.png
+
+# --- Captured dev data / scratch ---
+tools/kef-web/
+tools/discover/
+
+# --- Internal docs (kept local, not for the public repo) ---
+SECURITY_REVIEW.md
+PLAN.md

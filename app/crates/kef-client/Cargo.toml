@@ -1,0 +1,22 @@
+[package]
+name = "kef-client"
+version = "0.1.0"
+edition = "2021"
+description = "Async client for the KEF LS50 Wireless II / LSX II / LS60 network control API"
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+reqwest = { workspace = true }
+
+# Crypto for the speaker's HMAC_SHA256_AES256 protected-write auth.
+sha2 = "0.10"
+hmac = "0.12"
+aes = "0.8"
+cbc = { version = "0.1", features = ["alloc"] }
+base64 = "0.22"
+getrandom = "0.2"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }

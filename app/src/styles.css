@@ -1,0 +1,382 @@
+/* ============================================================
+   KEF Control - styled to match the KEF Connect iOS app.
+   System (SF Pro / Segoe) fonts, blue accent, purple active
+   source, iOS cards/toggles/segments. Light + dark.
+   ============================================================ */
+
+:root {
+  --font: -apple-system, "SF Pro Text", "SF Pro Display", system-ui,
+    "Segoe UI Variable", "Segoe UI", "Helvetica Neue", sans-serif;
+
+  /* dark (default) - iOS system colours, "elevated" grays like KEF Connect */
+  --bg: #1c1c1e;
+  --card: #2c2c2e;
+  --card-2: #3a3a3c;
+  --text: #ffffff;
+  --text-dim: #9a9aa0;
+  --separator: rgba(84, 84, 88, 0.6);
+  --accent: #0a84ff;
+  --accent-soft: rgba(10, 132, 255, 0.18);
+  --source-active: #5e5ce6;
+  --track: #48484a;
+  --danger: #ff453a;
+  --shadow: 0 10px 30px -20px rgba(0, 0, 0, 0.6);
+  --scrollbar: rgba(235, 235, 245, 0.18);
+  --scrollbar-hover: rgba(235, 235, 245, 0.32);
+}
+
+:root[data-theme="light"] {
+  --bg: #f2f2f7;
+  --card: #ffffff;
+  --card-2: #eceef1;
+  --text: #000000;
+  --text-dim: #8e8e93;
+  --separator: rgba(60, 60, 67, 0.18);
+  --accent: #007aff;
+  --accent-soft: rgba(0, 122, 255, 0.12);
+  --source-active: #5856d6;
+  --track: #e9e9ea;
+  --danger: #ff3b30;
+  --scrollbar: rgba(60, 60, 67, 0.22);
+  --scrollbar-hover: rgba(60, 60, 67, 0.4);
+  --shadow: 0 10px 30px -20px rgba(60, 60, 90, 0.35);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  overflow: hidden;            /* only the inner content scrolls */
+}
+
+/* Phone-width column, centered and full-height. The middle content scrolls;
+   the header and bottom tab bar stay put. */
+.app {
+  width: 100%;
+  max-width: 430px;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 0 18px;
+  display: flex;
+  flex-direction: column;
+}
+.app-scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  scrollbar-gutter: stable both-edges;  /* reserve gutter on BOTH sides -> cards stay centered */
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 6px 0 14px;
+  /* Firefox / standard */
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar) transparent;
+}
+/* WebKit / Chromium (WebView2) - thin, themed, rounded thumb */
+.app-scroll::-webkit-scrollbar { width: 12px; }
+.app-scroll::-webkit-scrollbar-track { background: transparent; }
+.app-scroll::-webkit-scrollbar-thumb {
+  background: var(--scrollbar);
+  border-radius: 10px;
+  border: 3px solid transparent;     /* padding around the thumb */
+  background-clip: padding-box;
+}
+.app-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-hover);
+  background-clip: padding-box;
+}
+
+/* ---- type ---- */
+h1 { font-size: 26px; line-height: 1.1; margin: 0; font-weight: 700; letter-spacing: -0.02em; }
+h2 {
+  font-size: 12px; margin: 0 0 12px; text-transform: uppercase;
+  letter-spacing: 0.04em; color: var(--text-dim); font-weight: 600;
+}
+.sub { color: var(--text-dim); font-size: 12px; }
+.hint { color: var(--text-dim); font-size: 13px; line-height: 1.5; margin: 8px 0 0; }
+
+header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-shrink: 0; padding: 20px 12px 14px; }
+.title-block { min-width: 0; }
+.title-block .sub { display: inline-flex; align-items: center; margin-top: 4px; }
+.header-actions { display: flex; align-items: center; gap: 10px; }
+
+.live-dot {
+  display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+  margin-right: 7px; background: var(--text-dim); opacity: 0.5;
+}
+.live-dot.on { background: #30d158; opacity: 1; }
+
+/* ---- cards ---- */
+section {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+/* ---- buttons ---- */
+button {
+  background: transparent; border: none; color: var(--text);
+  font-family: var(--font); font-size: 15px; cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.08s ease, box-shadow 0.18s ease;
+}
+button:active { transform: scale(0.97); }
+button:disabled { opacity: 0.4; cursor: default; transform: none; }
+
+button.primary {
+  background: var(--accent); color: #fff; border-radius: 12px;
+  padding: 12px 18px; font-weight: 600;
+}
+
+button.power {
+  font-size: 19px; width: 46px; height: 46px; border-radius: 50%;
+  border: 1px solid var(--separator); color: var(--text-dim); flex-shrink: 0;
+}
+button.power.on { color: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+
+button.icon-ghost {
+  width: 40px; height: 40px; border-radius: 50%; color: var(--text-dim);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+button.icon-ghost:hover { color: var(--text); background: var(--card-2); }
+
+/* ---- source tiles (circular, label below) ---- */
+.source-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 6px;
+}
+.source-tile {
+  display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 0;
+}
+.source-circle {
+  width: 58px; height: 58px; border-radius: 50%; background: var(--track);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-dim); font-weight: 700; font-size: 15px; letter-spacing: 0.02em;
+  transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+.source-tile:hover .source-circle { color: var(--text); }
+.source-tile.active .source-circle {
+  background: var(--source-active); color: #fff;
+  box-shadow: 0 8px 20px -8px var(--source-active);
+}
+.source-label { font-size: 12px; color: var(--text-dim); }
+.source-tile.active .source-label { color: var(--text); font-weight: 600; }
+
+/* ---- volume / value pills ---- */
+.vol-num {
+  color: var(--accent); background: var(--accent-soft);
+  border-radius: 8px; padding: 2px 9px; margin-left: 8px;
+  font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums;
+}
+.vol-num.muted { color: var(--text-dim); background: var(--track); }
+.volume-row { display: flex; align-items: center; gap: 16px; }
+.volume-row input[type="range"] { flex: 1; }
+
+input[type="range"] {
+  -webkit-appearance: none; appearance: none; height: 4px; border-radius: 2px;
+  background: var(--track); cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 26px; height: 26px;
+  border-radius: 50%; background: #fff; border: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 0 0.5px rgba(0, 0, 0, 0.04);
+}
+input[type="range"]:disabled { opacity: 0.5; }
+
+.mute-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: 50%; color: var(--text-dim);
+  border: 1px solid var(--separator); flex-shrink: 0;
+}
+.mute-btn:hover { color: var(--text); }
+.mute-btn[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
+
+/* ---- transport ---- */
+.transport { display: flex; justify-content: center; align-items: center; gap: 22px; }
+.transport button {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 54px; height: 54px; border-radius: 50%; color: var(--text);
+  background: var(--card-2);
+}
+.transport button.big {
+  width: 70px; height: 70px; background: var(--accent); color: #fff;
+  box-shadow: 0 10px 24px -10px var(--accent);
+}
+
+/* ---- now playing ---- */
+.now-playing {
+  display: flex; gap: 14px; margin-top: 18px; padding-top: 16px;
+  border-top: 1px solid var(--separator); align-items: center;
+}
+.now-playing img, .np-art-fallback {
+  width: 62px; height: 62px; border-radius: 12px; object-fit: cover; flex-shrink: 0;
+}
+.np-art-fallback {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--card-2); color: var(--text-dim); font-size: 26px;
+}
+.np-meta { min-width: 0; }
+.np-title { font-weight: 600; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.np-sub { color: var(--text-dim); font-size: 13px; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.np-codec { color: var(--accent); font-size: 11px; margin-top: 5px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+.progress { margin-top: 16px; }
+.progress-bar { height: 3px; border-radius: 2px; background: var(--track); overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.9s linear; }
+.progress-time {
+  display: flex; justify-content: space-between; color: var(--text-dim);
+  font-size: 11px; margin-top: 6px; font-variant-numeric: tabular-nums;
+}
+
+/* ---- bottom tab bar (KEF Connect style) ---- */
+.bottom-tabs {
+  flex-shrink: 0;
+  display: flex; justify-content: space-around; align-items: center;
+  padding: 12px 12px 16px; border-top: 1px solid var(--separator);
+}
+.bottom-tab {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  color: var(--text-dim); font-size: 11px; font-weight: 500; padding: 2px 18px;
+}
+.bottom-tab.active { color: var(--accent); }
+/* KEF Connect PNG icons, tinted to the tab colour via mask */
+.tab-ico {
+  width: 26px;
+  height: 26px;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+/* ---- DSP / device rows ---- */
+.dsp-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--separator);
+}
+.dsp-row:last-child { border-bottom: none; }
+.dsp-row.indent { padding-left: 14px; }
+.dsp-row label { font-size: 15px; display: flex; flex-direction: column; gap: 2px; }
+.row-sub { color: var(--text-dim); font-size: 11px; font-weight: 400; }
+
+.dsp-slider { display: flex; align-items: center; gap: 12px; flex: 1; max-width: 230px; }
+.dsp-slider input[type="range"] { flex: 1; }
+.dsp-value {
+  color: var(--accent); background: var(--accent-soft); border-radius: 8px;
+  padding: 2px 8px; font-size: 12px; font-weight: 600; min-width: 56px;
+  text-align: center; font-variant-numeric: tabular-nums;
+}
+
+/* iOS toggle */
+.toggle {
+  width: 48px; height: 29px; border-radius: 999px; background: var(--track);
+  border: none; padding: 0; position: relative; flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+.toggle .knob {
+  position: absolute; top: 2px; left: 2px; width: 25px; height: 25px;
+  border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease;
+}
+.toggle.on { background: var(--accent); }
+.toggle.on .knob { transform: translateX(19px); }
+.toggle:disabled { opacity: 0.5; }
+
+/* iOS segmented */
+.segmented { display: inline-flex; background: var(--track); border-radius: 9px; padding: 2px; gap: 2px; }
+.seg { background: transparent; border-radius: 7px; padding: 6px 14px; font-size: 13px; color: var(--text-dim); }
+.seg:hover { color: var(--text); }
+.seg.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.seg:disabled { opacity: 0.5; }
+
+/* select */
+.dsp-row select {
+  background: var(--track); border: none; color: var(--text);
+  border-radius: 9px; padding: 8px 11px; font-size: 14px; cursor: pointer; font-family: var(--font);
+}
+.dsp-row select:focus { outline: none; }
+
+/* device info grid */
+.info-grid {
+  display: grid; grid-template-columns: auto 1fr; gap: 9px 16px;
+  padding-bottom: 16px; margin-bottom: 6px;
+  border-bottom: 1px solid var(--separator);
+}
+.info-k { color: var(--text-dim); font-size: 14px; }
+.info-v { font-size: 14px; text-align: right; font-variant-numeric: tabular-nums; }
+
+/* separates a settings group (e.g. About) from the one above */
+.settings-divider { border-top: 1px solid var(--separator); margin: 18px 0 16px; }
+
+/* ---- error / connect / footer ---- */
+.error {
+  background: var(--accent-soft); border: 1px solid var(--danger); color: var(--danger);
+  border-radius: 10px; padding: 11px 13px; font-size: 13px;
+}
+.connect-screen { justify-content: center; align-items: center; text-align: center; padding: 0 26px; }
+.connect-screen h1 { font-size: 30px; margin-bottom: 6px; }
+.connect-screen .connect-row { width: 100%; max-width: 360px; }
+.standby-hint { margin-top: 18px; text-align: center; }
+.connect-row { display: flex; gap: 10px; margin-top: 18px; }
+.connect-row input {
+  flex: 1; background: var(--card); border: 1px solid var(--separator); color: var(--text);
+  border-radius: 12px; padding: 12px 14px; font-size: 15px; font-family: var(--font);
+}
+.connect-row input:focus { outline: none; border-color: var(--accent); }
+
+footer { display: flex; justify-content: space-between; align-items: center; padding: 0 4px; }
+button.link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 13px;
+  color: var(--accent);
+  cursor: pointer;
+}
+button.link:hover { text-decoration: underline; }
+
+/* Footer "Disconnect" matches the status text on the left (.sub): same size,
+   weight and dim colour, brightening slightly on hover. */
+footer .link {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+footer .link:hover { color: var(--text); text-decoration: none; }
+
+/* ---- confirm modal (Disconnect) ---- */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  animation: modal-fade 0.15s ease;
+}
+.modal {
+  background: var(--card); border-radius: 16px; padding: 22px 20px 18px;
+  width: 100%; max-width: 320px; box-shadow: var(--shadow);
+  border: 1px solid var(--separator);
+  animation: modal-pop 0.16s ease;
+}
+.modal-title {
+  font-size: 17px; font-weight: 700; color: var(--text);
+  margin: 0 0 8px; text-transform: none; letter-spacing: -0.01em;
+}
+.modal-text { color: var(--text-dim); font-size: 13.5px; line-height: 1.5; margin: 0 0 18px; }
+.modal-actions { display: flex; gap: 10px; }
+.modal-btn {
+  flex: 1; border-radius: 12px; padding: 11px 0; font-size: 15px; font-weight: 600;
+  background: var(--card-2); color: var(--text);
+}
+/* Both buttons share the neutral look; either one turns accent on hover. */
+.modal-btn:hover { background: var(--accent); color: #fff; }
+@keyframes modal-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modal-pop { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
