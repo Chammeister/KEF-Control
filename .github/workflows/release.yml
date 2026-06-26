@@ -57,9 +57,13 @@ jobs:
             - Windows: the `*-setup.exe` (recommended) or the `*.msi`
             - macOS: the universal `.dmg` (runs on Apple Silicon and Intel)
 
-            Both builds are unsigned. On first launch Windows shows a SmartScreen
-            prompt (More info -> Run anyway); macOS shows a Gatekeeper prompt
-            (right-click the app -> Open). See the README for details.
+            Both builds are unsigned, so the OS warns on first launch:
+
+            - Windows: SmartScreen -> More info -> Run anyway.
+            - macOS: it says it "could not verify" the app. Open System Settings ->
+              Privacy & Security, scroll to Security, and click "Open Anyway".
+
+            Full first-launch steps are in the README ("Opening on macOS").
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
