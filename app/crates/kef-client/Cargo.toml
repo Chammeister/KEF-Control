@@ -16,7 +16,7 @@ hmac = "0.12"
 aes = "0.8"
 cbc = { version = "0.1", features = ["alloc"] }
 base64 = "0.22"
-getrandom = "0.2"
+getrandom = "0.4"
 
 [dev-dependencies]
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
