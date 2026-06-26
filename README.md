@@ -32,7 +32,24 @@ Grab the latest installer for your platform from the [**Releases**](../../releas
 The builds are **unsigned** (this is a free, unofficial project), so your OS shows a one-time security prompt the first time you launch:
 
 - **Windows:** SmartScreen says "Windows protected your PC" -> click **More info** -> **Run anyway**.
-- **macOS:** Gatekeeper says the developer "cannot be verified" -> **right-click the app -> Open -> Open**, or allow it under **System Settings -> Privacy & Security**.
+- **macOS:** Gatekeeper says Apple "could not verify" the app - follow the steps just below.
+
+### Opening on macOS (first launch)
+
+Because the app isn't notarized by Apple (that needs a paid Apple Developer account), macOS blocks it the first time with *"Apple could not verify 'KEF Control' is free of malware."* This is expected for a free, open-source app - here's how to allow it once:
+
+1. Open the `.dmg` and drag **KEF Control** into your **Applications** folder.
+2. Double-click the app so the warning appears, then click **Done** (do *not* move it to Trash).
+3. Open **System Settings -> Privacy & Security** and scroll down to the **Security** section. You'll see a line like "KEF Control was blocked..." with an **Open Anyway** button - click it and authenticate with Touch ID or your password.
+4. On the final prompt, click **Open Anyway / Open**. macOS remembers the choice, so it won't ask again.
+
+If the **Open Anyway** button isn't there, double-click the app once more to bring it back (it only appears for a short while after the warning).
+
+Alternatively, from Terminal you can clear the download-quarantine flag and skip the prompts entirely:
+
+```bash
+xattr -dr com.apple.quarantine "/Applications/KEF Control.app"
+```
 
 After it's open, enter your speaker's IP address once (find it in KEF Connect under the speaker's info, or in your router's device list). The app remembers it and auto-connects next time. Tip: give the speaker a **DHCP reservation** in your router so its IP never changes.
 
