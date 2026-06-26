@@ -1,0 +1,19 @@
+version: 2
+updates:
+  # Frontend npm dependencies
+  - package-ecosystem: "npm"
+    directory: "/app"
+    schedule:
+      interval: "weekly"
+
+  # Rust backend + kef-client crate (Cargo workspace at /app)
+  - package-ecosystem: "cargo"
+    directory: "/app"
+    schedule:
+      interval: "weekly"
+
+  # GitHub Actions used by the release workflow (keeps the pinned SHAs current)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
