@@ -1763,7 +1763,7 @@ dependencies = [
  "aes",
  "base64 0.22.1",
  "cbc",
- "getrandom 0.2.17",
+ "getrandom 0.4.2",
  "hmac",
  "reqwest 0.12.28",
  "serde",
