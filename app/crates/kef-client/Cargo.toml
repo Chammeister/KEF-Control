@@ -12,7 +12,7 @@ reqwest = { workspace = true }
 
 # Crypto for the speaker's HMAC_SHA256_AES256 protected-write auth.
 sha2 = "0.10"
-hmac = "0.12"
+hmac = "0.13"
 aes = "0.8"
 cbc = { version = "0.1", features = ["alloc"] }
 base64 = "0.22"
