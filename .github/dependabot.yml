@@ -1,19 +1,34 @@
 version: 2
 updates:
-  # Frontend npm dependencies
+  # Frontend npm dependencies - one combined PR per month
   - package-ecosystem: "npm"
     directory: "/app"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
+    open-pull-requests-limit: 5
+    groups:
+      npm:
+        patterns:
+          - "*"
 
-  # Rust backend + kef-client crate (Cargo workspace at /app)
+  # Rust backend + kef-client crate (Cargo workspace at /app) - one combined PR
   - package-ecosystem: "cargo"
     directory: "/app"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
+    open-pull-requests-limit: 5
+    groups:
+      cargo:
+        patterns:
+          - "*"
 
-  # GitHub Actions used by the release workflow (keeps the pinned SHAs current)
+  # GitHub Actions (keeps the pinned SHAs current) - one combined PR
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
+    open-pull-requests-limit: 5
+    groups:
+      github-actions:
+        patterns:
+          - "*"
