@@ -144,8 +144,8 @@ Installers are **not cross-compiled** - build Windows on Windows and macOS on a 
 Pushing a version tag builds and publishes both platforms automatically. The workflow in `.github/workflows/release.yml` uses [`tauri-action`](https://github.com/tauri-apps/tauri-action) to build the Windows installers and a universal macOS `.dmg` on GitHub's runners, then attaches them to a draft GitHub Release:
 
 ```bash
-git tag v0.1.1
-git push origin v0.1.1
+git tag v0.1.2
+git push origin v0.1.2
 ```
 
 When the run finishes, publish the draft release and the installers are available on the Releases page.

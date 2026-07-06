@@ -16,7 +16,7 @@ interface Props {
   onOpenUrl: (url: string) => void;
 }
 
-const APP_VERSION = "0.1.1";
+const APP_VERSION = "0.1.2";
 const GITHUB_URL = "https://github.com/Chammeister/KEF-Control";
 const DISCLAIMER =
   "KEF Control is an unofficial, community-built app and is not affiliated with, " +
