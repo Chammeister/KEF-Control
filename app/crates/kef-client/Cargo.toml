@@ -11,12 +11,12 @@ thiserror = { workspace = true }
 reqwest = { workspace = true }
 
 # Crypto for the speaker's HMAC_SHA256_AES256 protected-write auth.
-sha2 = "0.10"
-hmac = "0.12"
-aes = "0.8"
-cbc = { version = "0.1", features = ["alloc"] }
-base64 = "0.22"
-getrandom = "0.2"
+sha2 = "0.11"
+hmac = "0.13"
+aes = "0.9"
+cbc = { version = "0.2", features = ["alloc"] }
+base64 = "0.23"
+getrandom = "0.4"
 
 [dev-dependencies]
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
